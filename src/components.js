@@ -1,5 +1,5 @@
 import "./styles.css";
-import { divGen, li, logo, ul, a, Hr, span } from "./utilities";
+import { divGen, li, logo, ul, a, Hr, span , tabButton} from "./utilities";
 
 import "flowbite";
 
@@ -24,6 +24,7 @@ const navBar = () => {
 
   // link settings
   const links = {
+    home: tabButton("home"),
     menu: tabButton("menu"),
     about: tabButton("about"),
     reviews: tabButton("reviews"),
@@ -61,48 +62,34 @@ const navBar = () => {
     linkWrapper.classList.add(style);
   });
 
+  let twAttr = {
+    id: "myTab",
+    "data-tabs-toggle": "#tabContent",
+    role: "tablist",
+  }
+
+  for(let key in twAttr){
+    let value = twAttr[key];
+    tabWrapper.setAttribute(key, value);
+  }
+
   for (let link in links) {
     linkWrapper.appendChild(links[link]);
   }
 
+  
+  
   // adding elements to dom
   tabWrapper.appendChild(logo());
   tabWrapper.appendChild(linkWrapper);
-  // tabWrapper.appendChild(linkWrapper);
+ 
 
   nav.appendChild(tabWrapper);
 
   return nav;
 };
 
-const tabButton = (text = "", classStyles = []) => {
-  const btn = document.createElement("button");
-  const styles = [
-    "underline",
-    "hover:underline-offset-8",
-    "hover:text-gray-600",
-    "hover:border-gray-300",
-    "transition-all",
-    "ease-in-out",
-    "duration-300",
-    "flex",
-    "items-center",
-  ];
-  btn.type = "button";
-  btn.textContent = text;
 
-  if (classStyles.length > 0) {
-    classStyles.forEach((style) => {
-      btn.classList.add(style);
-    });
-  }
-
-  styles.forEach((style) => {
-    btn.classList.add(style);
-  });
-
-  return btn;
-};
 
 //content
 const main = () => {

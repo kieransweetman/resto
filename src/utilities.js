@@ -66,4 +66,40 @@ const span = (css, textcontent = "") => {
 
   return span;
 };
-export { divGen, logo, ul, li, a, Hr, span };
+
+
+const tabButton = (text = "", classStyles = []) => {
+  const btn = document.createElement("button");
+  const styles = [
+    "underline",
+    "text-black",
+    "hover:underline-offset-8",
+    "hover:text-gray-600",
+    "hover:border-gray-300",
+    "transition-all",
+    "ease-in-out",
+    "duration-300",
+    "flex",
+    "items-center",
+  ];
+  btn.type = "button";
+  btn.id = `${text}-tab`;
+  btn.setAttribute('role', 'tab')
+  btn.setAttribute('aria-controls', `${text}`);
+  btn.setAttribute('aria-selected', "false");
+  btn.setAttribute('data-tabs-target', `#${text}`);
+  btn.textContent = text;
+
+  if (classStyles.length > 0) {
+    classStyles.forEach((style) => {
+      btn.classList.add(style);
+    });
+  }
+
+  styles.forEach((style) => {
+    btn.classList.add(style);
+  });
+
+  return btn;
+};
+export { divGen, logo, ul, li, a, Hr, span, tabButton };
