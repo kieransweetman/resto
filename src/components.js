@@ -96,6 +96,7 @@ const navBar = () => {
 const main = () => {
   const body = divGen();
 
+ body.id='content-wrapper';
   let styles = ["container", "bg-red-700", "flex", "min-h-screen", "mx-auto"];
 
   styles.forEach((style) => {
@@ -106,7 +107,7 @@ const main = () => {
   tabs.forEach(tab =>{
     tab.addEventListener('click',function() {parser(tab.id)}, false);
   })  
-  
+
   return body;
 };
 

@@ -103,7 +103,12 @@ const tabButton = (text = "", classStyles = []) => {
 
   return btn;
 };
-
+const removeContent = (wrapper) => {
+  
+    wrapper.childNodes.forEach(child=>{
+        child.remove();
+    })
+}
 const parser = (id) => {
   let tabContent = document.querySelector(`#${id}`);
   
@@ -119,5 +124,11 @@ const parser = (id) => {
   }
 }
 
+const h2 = (text="")=>{
+  let h2 = document.createElement('h2');
+  h2.textContent = text;
+  return h2;
+}
 
-export { divGen, logo, ul, li, a, Hr, span, tabButton, parser };
+
+export { divGen, logo, ul, li, a, Hr, span, tabButton, parser, removeContent, h2 };
