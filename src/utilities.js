@@ -130,5 +130,11 @@ const h2 = (text="")=>{
   return h2;
 }
 
+const p = (text="") => {
+  let p = document.createElement('p')
+  p.textContent = text;
+  return p;
+}
 
-export { divGen, logo, ul, li, a, Hr, span, tabButton, parser, removeContent, h2 };
+
+export { divGen, logo, ul, li, a, p, Hr, span, tabButton, parser, removeContent, h2 };
