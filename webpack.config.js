@@ -7,9 +7,10 @@ module.exports = {
     index: "./src/index.js",
     components: "./src/components.js",
     utilities: "./src/utilities.js",
-    menu: "./src/menu.js",
-    about: "./src/about.js",
-    reviews: "./src/reviews.js"
+    menu: "./src/pages/menu.js",
+    about: "./src/pages/about.js",
+    reviews: "./src/pages/reviews.js",
+    home: "./src/pages/home.js",
   },
   devtool: "inline-source-map",
   plugins: [

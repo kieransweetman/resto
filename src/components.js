@@ -1,5 +1,6 @@
 import "./styles.css";
-import { divGen, li, logo, ul, a, Hr, span , tabButton} from "./utilities";
+import { divGen, logo, ul, a, Hr, span , tabButton, parser} from "./utilities";
+
 
 import "flowbite";
 
@@ -70,7 +71,7 @@ const navBar = () => {
 
   for(let key in twAttr){
     let value = twAttr[key];
-    tabWrapper.setAttribute(key, value);
+    linkWrapper.setAttribute(key, value);
   }
 
   for (let link in links) {
@@ -100,6 +101,12 @@ const main = () => {
   styles.forEach((style) => {
     body.classList.add(style);
   });
+
+  const tabs = document.querySelector("#myTab").childNodes;
+  tabs.forEach(tab =>{
+    tab.addEventListener('click',function() {parser(tab.id)}, false);
+  })  
+  
   return body;
 };
 

@@ -1,5 +1,10 @@
 import Logo from "./logo.jpg";
 
+import * as about from './pages/about';
+import * as menu from './pages/menu';
+import * as reviews from './pages/reviews';
+import * as home from './pages/home';
+
 const divGen = () => {
   const div = document.createElement("div");
   return div;
@@ -84,10 +89,6 @@ const tabButton = (text = "", classStyles = []) => {
   ];
   btn.type = "button";
   btn.id = `${text}-tab`;
-  btn.setAttribute('role', 'tab')
-  btn.setAttribute('aria-controls', `${text}`);
-  btn.setAttribute('aria-selected', "false");
-  btn.setAttribute('data-tabs-target', `#${text}`);
   btn.textContent = text;
 
   if (classStyles.length > 0) {
@@ -102,4 +103,21 @@ const tabButton = (text = "", classStyles = []) => {
 
   return btn;
 };
-export { divGen, logo, ul, li, a, Hr, span, tabButton };
+
+const parser = (id) => {
+  let tabContent = document.querySelector(`#${id}`);
+  
+   
+  if(id.includes('home')){
+    home.displayContent();
+  } else if (id.includes('menu')){
+    menu.displayContent();
+  } else if (id.includes('about')){
+    about.displayContent();
+  } else {
+    reviews.displayContent();
+  }
+}
+
+
+export { divGen, logo, ul, li, a, Hr, span, tabButton, parser };
