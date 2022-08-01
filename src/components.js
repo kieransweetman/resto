@@ -1,6 +1,5 @@
 import "./styles.css";
-import { divGen, logo, ul, a, Hr, span , tabButton, parser} from "./utilities";
-
+import { divGen, logo, ul, a, Hr, span, tabButton, parser } from "./utilities";
 
 import "flowbite";
 
@@ -67,9 +66,9 @@ const navBar = () => {
     id: "myTab",
     "data-tabs-toggle": "#tabContent",
     role: "tablist",
-  }
+  };
 
-  for(let key in twAttr){
+  for (let key in twAttr) {
     let value = twAttr[key];
     linkWrapper.setAttribute(key, value);
   }
@@ -78,25 +77,20 @@ const navBar = () => {
     linkWrapper.appendChild(links[link]);
   }
 
-  
-  
   // adding elements to dom
   tabWrapper.appendChild(logo());
   tabWrapper.appendChild(linkWrapper);
- 
 
   nav.appendChild(tabWrapper);
 
   return nav;
 };
 
-
-
 //content
 const main = () => {
   const body = divGen();
 
- body.id='content-wrapper';
+  body.id = "content-wrapper";
   let styles = ["container", "bg-red-700", "flex", "min-h-screen", "mx-auto"];
 
   styles.forEach((style) => {
@@ -104,9 +98,15 @@ const main = () => {
   });
 
   const tabs = document.querySelector("#myTab").childNodes;
-  tabs.forEach(tab =>{
-    tab.addEventListener('click',function() {parser(tab.id)}, false);
-  })  
+  tabs.forEach((tab) => {
+    tab.addEventListener(
+      "click",
+      function () {
+        parser(tab.id);
+      },
+      false
+    );
+  });
 
   return body;
 };
@@ -141,6 +141,7 @@ const foot = () => {
     ],
     " © 2022 "
   );
+
   let persSite = a("https://kieransweetman.com/", "Kieran Sweetman™");
   persSite.classList.add("hover:underline");
 

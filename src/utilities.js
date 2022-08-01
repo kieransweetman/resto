@@ -1,9 +1,10 @@
 import Logo from "./logo.jpg";
+import Banner from "./banner.png";
 
-import * as about from './pages/about';
-import * as menu from './pages/menu';
-import * as reviews from './pages/reviews';
-import * as home from './pages/home';
+import * as about from "./pages/about";
+import * as menu from "./pages/menu";
+import * as reviews from "./pages/reviews";
+import * as home from "./pages/home";
 
 const divGen = () => {
   const div = document.createElement("div");
@@ -21,6 +22,19 @@ const logo = () => {
   ramenLogo.src = Logo;
 
   return ramenLogo;
+};
+
+const BannerImage = () => {
+  const banner = new Image();
+  let styles = ["h-50%", "w-50%"];
+
+  styles.forEach((style) => {
+    banner.classList.add(style);
+  });
+
+  banner.src = Banner;
+
+  return banner;
 };
 
 const a = (href = "", textcontent = "") => {
@@ -72,7 +86,6 @@ const span = (css, textcontent = "") => {
   return span;
 };
 
-
 const tabButton = (text = "", classStyles = []) => {
   const btn = document.createElement("button");
   const styles = [
@@ -104,37 +117,49 @@ const tabButton = (text = "", classStyles = []) => {
   return btn;
 };
 const removeContent = (wrapper) => {
-  
-    wrapper.childNodes.forEach(child=>{
-        child.remove();
-    })
-}
+  wrapper.childNodes.forEach((child) => {
+    child.remove();
+  });
+};
+
+const h2 = (text = "") => {
+  let h2 = document.createElement("h2");
+  h2.textContent = text;
+  return h2;
+};
+
+const p = (text = "") => {
+  let p = document.createElement("p");
+  p.textContent = text;
+  return p;
+};
+
 const parser = (id) => {
   let tabContent = document.querySelector(`#${id}`);
-  
-   
-  if(id.includes('home')){
+
+  if (id.includes("home")) {
     home.displayContent();
-  } else if (id.includes('menu')){
+  } else if (id.includes("menu")) {
     menu.displayContent();
-  } else if (id.includes('about')){
+  } else if (id.includes("about")) {
     about.displayContent();
   } else {
     reviews.displayContent();
   }
-}
+};
 
-const h2 = (text="")=>{
-  let h2 = document.createElement('h2');
-  h2.textContent = text;
-  return h2;
-}
-
-const p = (text="") => {
-  let p = document.createElement('p')
-  p.textContent = text;
-  return p;
-}
-
-
-export { divGen, logo, ul, li, a, p, Hr, span, tabButton, parser, removeContent, h2 };
+export {
+  divGen,
+  logo,
+  ul,
+  li,
+  a,
+  p,
+  Hr,
+  span,
+  tabButton,
+  parser,
+  removeContent,
+  h2,
+  BannerImage,
+};

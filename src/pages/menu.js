@@ -7,7 +7,7 @@ const displayContent = () => {
   let body = divGen();
   let title = divGen();
   let grid = divGen();
-  let cards = [divGen(), divGen()];
+  let cards = [divGen(), divGen(), divGen(), divGen()];
 
   //body settings
 
@@ -16,6 +16,12 @@ const displayContent = () => {
   let menuDesc = p(
     "Our broths are made with time and love to produce the most Umami-esque flavors you will ever taste"
   );
+
+  let titleStyles = ["text-center"];
+
+  titleStyles.forEach((style) => {
+    title.classList.add(style);
+  });
 
   title.appendChild(menuTitle);
   title.appendChild(menuDesc);
@@ -33,14 +39,18 @@ const displayContent = () => {
     grid.classList.add(style);
   });
 
+  grid.id = "cards";
+
   //card settings
 
   let cardStyles = [
+    "px-3",
+    "py-3",
     "items-center",
 
     "rounded-lg",
     "shadow",
-    "sm:flex",
+
     "dark:bg-gray-800",
     "dark:border-gray-700",
   ];
@@ -50,6 +60,19 @@ const displayContent = () => {
     image.src =
       "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png";
     card.appendChild(image);
+
+    let text = divGen();
+
+    text.appendChild(h2("Tonkutsu Ramen"));
+    text.appendChild(
+      p(
+        "A porc rich broth - Served with braised porc, veggies, 1 poached egg and egg noodles"
+      )
+    );
+
+    card.appendChild(text);
+
+    card.id = "card";
     cardStyles.forEach((style) => {
       card.classList.add(style);
     });
