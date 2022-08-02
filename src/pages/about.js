@@ -1,37 +1,14 @@
-import {
-  divGen,
-  a,
-  li,
-  ul,
-  removeContent,
-  h2,
-  p,
-  BannerImage,
-} from "../utilities";
+import { divGen, removeContent, BannerImage, styler } from "../utils/utilities";
 
 const displayContent = () => {
   let wrapper = document.querySelector("#content-wrapper");
+  let bannerDiv = divGen();
   removeContent(wrapper);
 
-  // about sections
-  let aboutText = divGen();
   let banner = BannerImage();
 
-  // about text settings
-
-  let aboutStyles = [];
-  let aboutInfo = [
-    h2("Ohayo Ramen"),
-    p(
-      "Here you will find our short history, why we love making ramen, and what to expect from us in the future."
-    ),
-  ];
-
-  //   aboutInfo.forEach((blurb) => {
-  //     aboutText.appendChild(blurb);
-  //   });
-
-  wrapper.appendChild(aboutText);
-  wrapper.appendChild(banner);
+  styler(["flex", "content-center", "justify-center"], bannerDiv);
+  bannerDiv.appendChild(banner);
+  wrapper.appendChild(bannerDiv);
 };
 export { displayContent };

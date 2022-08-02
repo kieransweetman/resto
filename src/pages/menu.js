@@ -1,4 +1,13 @@
-import { divGen, a, li, ul, removeContent, h2, p } from "../utilities";
+import {
+  divGen,
+  a,
+  li,
+  ul,
+  removeContent,
+  h2,
+  p,
+  styler,
+} from "../utils/utilities";
 
 const displayContent = () => {
   let wrapper = document.querySelector("#content-wrapper");
@@ -10,6 +19,19 @@ const displayContent = () => {
   let cards = [divGen(), divGen(), divGen(), divGen()];
 
   //body settings
+  body.id = "body";
+
+  let bodyStyles = [
+    "container",
+    "mx-auto",
+    "flex",
+    "flex-col",
+    "content-center",
+    "justify-center",
+    "gap-4",
+  ];
+
+  styler(bodyStyles, body);
 
   //title settings
   let menuTitle = h2("Ohayo Ramen Menu");
@@ -18,10 +40,7 @@ const displayContent = () => {
   );
 
   let titleStyles = ["text-center"];
-
-  titleStyles.forEach((style) => {
-    title.classList.add(style);
-  });
+  styler(titleStyles, title);
 
   title.appendChild(menuTitle);
   title.appendChild(menuDesc);
@@ -29,10 +48,13 @@ const displayContent = () => {
   //grid settings
   let gridStyles = [
     "grid",
-    "grid-cols-4",
-    "grid-rows-1",
-    "bg-slate-500",
+    "sm:grid-cols-4",
+    "sm:grid-rows-1",
+    "bg-slate-200",
     "mx-auto",
+    "gap-5",
+    "grid-cols-1",
+    "grid-rows-4",
   ];
 
   gridStyles.forEach((style) => {
@@ -47,12 +69,12 @@ const displayContent = () => {
     "px-3",
     "py-3",
     "items-center",
-
+    "flex",
+    "flex-col",
     "rounded-lg",
     "shadow",
-
-    "dark:bg-gray-800",
-    "dark:border-gray-700",
+    "text-center",
+    "bg-slate-700",
   ];
 
   cards.forEach((card) => {
@@ -73,9 +95,7 @@ const displayContent = () => {
     card.appendChild(text);
 
     card.id = "card";
-    cardStyles.forEach((style) => {
-      card.classList.add(style);
-    });
+    styler(cardStyles, card);
   });
 
   // dom manip

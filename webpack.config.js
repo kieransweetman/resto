@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     index: "./src/index.js",
     components: "./src/components.js",
-    utilities: "./src/utilities.js",
+    utilities: "./src/utils/utilities.js",
     menu: "./src/pages/menu.js",
     about: "./src/pages/about.js",
     reviews: "./src/pages/reviews.js",

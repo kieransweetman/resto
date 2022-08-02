@@ -1,8 +1,9 @@
-import {divGen, a, li, ul, removeContent} from "../utilities";
-const displayContent = () => {
-    console.log('test home.js');
-    let wrapper = document.querySelector('#content-wrapper');
-    removeContent(wrapper);
-}
+import { divGen, a, li, ul, removeContent } from "../utils/utilities";
 
-export {displayContent};
+const displayContent = () => {
+  console.log("test home.js");
+  let wrapper = document.querySelector("#content-wrapper");
+  removeContent(wrapper);
+};
+
+export { displayContent };

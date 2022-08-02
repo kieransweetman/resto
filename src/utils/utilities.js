@@ -1,10 +1,10 @@
-import Logo from "./logo.jpg";
-import Banner from "./banner.png";
+import Logo from "../images/logo.jpg";
+import Banner from "../images/banner.png";
 
-import * as about from "./pages/about";
-import * as menu from "./pages/menu";
-import * as reviews from "./pages/reviews";
-import * as home from "./pages/home";
+import * as about from "../pages/about";
+import * as menu from "../pages/menu";
+import * as reviews from "../pages/reviews";
+import * as home from "../pages/home";
 
 const divGen = () => {
   const div = document.createElement("div");
@@ -14,10 +14,7 @@ const divGen = () => {
 const logo = () => {
   const ramenLogo = new Image();
   let styles = ["h-10", "mr-3", "sm:h-14"];
-
-  styles.forEach((style) => {
-    ramenLogo.classList.add(style);
-  });
+  styler(styles, ramenLogo);
 
   ramenLogo.src = Logo;
 
@@ -26,11 +23,8 @@ const logo = () => {
 
 const BannerImage = () => {
   const banner = new Image();
-  let styles = ["h-50%", "w-50%"];
-
-  styles.forEach((style) => {
-    banner.classList.add(style);
-  });
+  let styles = ["object-fill"];
+  styler(styles, banner);
 
   banner.src = Banner;
 
@@ -110,9 +104,7 @@ const tabButton = (text = "", classStyles = []) => {
     });
   }
 
-  styles.forEach((style) => {
-    btn.classList.add(style);
-  });
+  styler(styles, btn);
 
   return btn;
 };
@@ -135,8 +127,6 @@ const p = (text = "") => {
 };
 
 const parser = (id) => {
-  let tabContent = document.querySelector(`#${id}`);
-
   if (id.includes("home")) {
     home.displayContent();
   } else if (id.includes("menu")) {
@@ -146,6 +136,14 @@ const parser = (id) => {
   } else {
     reviews.displayContent();
   }
+};
+
+const styler = (list = [], element) => {
+  return list.length == 0
+    ? null
+    : list.forEach((style) => {
+        element.classList.add(style);
+      });
 };
 
 export {
@@ -162,4 +160,5 @@ export {
   removeContent,
   h2,
   BannerImage,
+  styler,
 };

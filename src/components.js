@@ -1,5 +1,14 @@
 import "./styles.css";
-import { divGen, logo, ul, a, Hr, span, tabButton, parser } from "./utilities";
+import {
+  divGen,
+  logo,
+  ul,
+  a,
+  span,
+  tabButton,
+  parser,
+  styler,
+} from "./utils/utilities";
 
 import "flowbite";
 
@@ -9,18 +18,18 @@ const navBar = () => {
   //navbar tag settings
 
   const nav = document.createElement("nav");
+
   let navStyles = [
-    "bg-gray-500",
-    "border-gray-200",
+    "bg-slate-50",
+    "border-slate-200",
     "px-2",
     "sm:px-4",
     "py-2.5",
     "rounded",
     "dark:bg-gray-900",
   ];
-  navStyles.forEach((style) => {
-    nav.classList.add(style);
-  });
+
+  styler(navStyles, nav);
 
   // link settings
   const links = {
@@ -35,6 +44,7 @@ const navBar = () => {
   // tabWrapper/css/content settings
   const tabWrapper = divGen();
   const linkWrapper = divGen();
+  linkWrapper.id = "myTab";
 
   let linkStyle = [
     "container",
@@ -54,24 +64,8 @@ const navBar = () => {
     "mx-auto",
   ];
 
-  wrapperStyle.forEach((style) => {
-    tabWrapper.classList.add(style);
-  });
-
-  linkStyle.forEach((style) => {
-    linkWrapper.classList.add(style);
-  });
-
-  let twAttr = {
-    id: "myTab",
-    "data-tabs-toggle": "#tabContent",
-    role: "tablist",
-  };
-
-  for (let key in twAttr) {
-    let value = twAttr[key];
-    linkWrapper.setAttribute(key, value);
-  }
+  styler(wrapperStyle, tabWrapper);
+  styler(linkStyle, linkWrapper);
 
   for (let link in links) {
     linkWrapper.appendChild(links[link]);
@@ -89,13 +83,17 @@ const navBar = () => {
 //content
 const main = () => {
   const body = divGen();
-
   body.id = "content-wrapper";
-  let styles = ["container", "bg-red-700", "flex", "min-h-screen", "mx-auto"];
 
-  styles.forEach((style) => {
-    body.classList.add(style);
-  });
+  let bodystyles = [
+    "container",
+    "bg-red-700",
+    "flex",
+    "min-h-screen",
+    "mx-auto",
+  ];
+
+  styler(bodystyles, body);
 
   const tabs = document.querySelector("#myTab").childNodes;
   tabs.forEach((tab) => {
@@ -116,19 +114,11 @@ const main = () => {
 const foot = () => {
   const body = divGen();
   //css
-  let styles = ["container", "bg-blue-700", "flex", "mx-auto", "p-4"];
-  styles.forEach((style) => {
-    body.classList.add(style);
-  });
+  let bodyStyles = ["container", "bg-slate-50", "flex", "mx-auto", "p-4"];
+
+  styler(bodyStyles, body);
+
   //copy right
-  const hr = Hr([
-    "mx-10",
-    "my-6",
-    "border-gray-6",
-    "sm:mx-auto",
-    "lg:my-8",
-    "w-1/2",
-  ]);
 
   const spanTag = span(
     [
@@ -150,7 +140,7 @@ const foot = () => {
 
   //first parse nodes to get only the list elements + links css (ul)
   let links = ul(3);
-  let linkstyles = [
+  let linkStyles = [
     "container",
     "flex",
     "justify-end",
@@ -160,9 +150,7 @@ const foot = () => {
     "px-4",
   ];
 
-  linkstyles.forEach((style) => {
-    links.classList.add(style);
-  });
+  styler(linkStyles, links);
 
   // then adding each a tag to each li element
   let children = links.childNodes;
@@ -181,9 +169,7 @@ const foot = () => {
 
     let css = ["mr-4", "hover:underline", "md:mr-6"];
 
-    css.forEach((style) => {
-      link.classList.add(style);
-    });
+    styler(css, link);
 
     li.appendChild(link);
   });
