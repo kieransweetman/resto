@@ -6,11 +6,21 @@ import * as menu from "../pages/menu";
 import * as reviews from "../pages/reviews";
 import * as home from "../pages/home";
 
-const divGen = () => {
+const divGen = (ID, classStyles = []) => {
   const div = document.createElement("div");
+
+  div.id = ID;
+  styler(classStyles, div);
   return div;
 };
 
+const Nav = (navStyles) => {
+  let el = document.createElement("nav");
+
+  styler(navStyles, el);
+
+  return el;
+};
 const logo = () => {
   const ramenLogo = new Image();
   let styles = ["h-10", "mr-3", "sm:h-14"];
@@ -31,10 +41,11 @@ const BannerImage = () => {
   return banner;
 };
 
-const a = (href = "", textcontent = "") => {
+const a = (href = "", textcontent = "", classStyles = []) => {
   const a = document.createElement("a");
   a.href = href;
   a.textContent = textcontent;
+  styler(classStyles, a);
 
   return a;
 };
@@ -43,13 +54,15 @@ const li = () => {
   return document.createElement("li");
 };
 
-const ul = (count = 0) => {
+const ul = (count = 0, classStyles = []) => {
   const ul = document.createElement("ul");
   for (let i = 0; i < count; i++) {
     const list = li();
     list.id = i;
     ul.appendChild(list);
   }
+
+  styler(classStyles, ul);
 
   return ul;
 };
@@ -67,47 +80,26 @@ const Hr = (css) => {
   return hr;
 };
 
-const span = (css, textcontent = "") => {
+const span = (text = "", css) => {
   let span = document.createElement("span");
-  if (css.lenght <= 0) {
-    return span;
-  }
-  span.textContent = textcontent;
-  css.forEach((style) => {
-    span.classList.add(style);
-  });
+
+  span.textContent = text;
+  styler(css, span);
 
   return span;
 };
 
 const tabButton = (text = "", classStyles = []) => {
   const btn = document.createElement("button");
-  const styles = [
-    "underline",
-    "text-black",
-    "hover:underline-offset-8",
-    "hover:text-gray-600",
-    "hover:border-gray-300",
-    "transition-all",
-    "ease-in-out",
-    "duration-300",
-    "flex",
-    "items-center",
-  ];
+
   btn.type = "button";
   btn.id = `${text}-tab`;
   btn.textContent = text;
 
-  if (classStyles.length > 0) {
-    classStyles.forEach((style) => {
-      btn.classList.add(style);
-    });
-  }
-
-  styler(styles, btn);
-
+  styler(classStyles, btn);
   return btn;
 };
+
 const removeContent = (wrapper) => {
   wrapper.childNodes.forEach((child) => {
     child.remove();
@@ -139,8 +131,8 @@ const parser = (id) => {
 };
 
 const styler = (list = [], element) => {
-  return list.length == 0
-    ? null
+  return typeof list == "undefined" || typeof list == "string"
+    ? element
     : list.forEach((style) => {
         element.classList.add(style);
       });
@@ -161,4 +153,5 @@ export {
   h2,
   BannerImage,
   styler,
+  Nav,
 };

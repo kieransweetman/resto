@@ -1,6 +1,7 @@
 import "./styles.css";
 import {
   divGen,
+  Nav,
   logo,
   ul,
   a,
@@ -14,11 +15,8 @@ import "flowbite";
 
 // header
 
+// Create my navbar elements with applied styles
 const navBar = () => {
-  //navbar tag settings
-
-  const nav = document.createElement("nav");
-
   let navStyles = [
     "bg-slate-50",
     "border-slate-200",
@@ -28,23 +26,30 @@ const navBar = () => {
     "rounded",
     "dark:bg-gray-900",
   ];
-
-  styler(navStyles, nav);
+  const nav = Nav(navStyles);
 
   // link settings
+  const tabStyles = [
+    "underline",
+    "text-black",
+    "hover:underline-offset-8",
+    "hover:text-gray-600",
+    "hover:border-gray-300",
+    "transition-all",
+    "ease-in-out",
+    "duration-300",
+    "flex",
+    "items-center",
+  ];
+
   const links = {
-    home: tabButton("home"),
-    menu: tabButton("menu"),
-    about: tabButton("about"),
-    reviews: tabButton("reviews"),
+    home: tabButton("home", tabStyles),
+    menu: tabButton("menu", tabStyles),
+    about: tabButton("about", tabStyles),
+    reviews: tabButton("reviews", tabStyles),
   };
 
-  // logo
-
   // tabWrapper/css/content settings
-  const tabWrapper = divGen();
-  const linkWrapper = divGen();
-  linkWrapper.id = "myTab";
 
   let linkStyle = [
     "container",
@@ -64,14 +69,15 @@ const navBar = () => {
     "mx-auto",
   ];
 
-  styler(wrapperStyle, tabWrapper);
-  styler(linkStyle, linkWrapper);
+  const tabWrapper = divGen("tabwrapper", wrapperStyle);
+  const linkWrapper = divGen("myTab", linkStyle);
 
   for (let link in links) {
     linkWrapper.appendChild(links[link]);
   }
 
   // adding elements to dom
+
   tabWrapper.appendChild(logo());
   tabWrapper.appendChild(linkWrapper);
 
@@ -82,10 +88,7 @@ const navBar = () => {
 
 //content
 const main = () => {
-  const body = divGen();
-  body.id = "content-wrapper";
-
-  let bodystyles = [
+  let bodyStyles = [
     "container",
     "bg-red-700",
     "flex",
@@ -93,7 +96,7 @@ const main = () => {
     "mx-auto",
   ];
 
-  styler(bodystyles, body);
+  const body = divGen("content-wrapper", bodyStyles);
 
   const tabs = document.querySelector("#myTab").childNodes;
   tabs.forEach((tab) => {
@@ -112,34 +115,30 @@ const main = () => {
 //footer
 
 const foot = () => {
-  const body = divGen();
-  //css
   let bodyStyles = ["container", "bg-slate-50", "flex", "mx-auto", "p-4"];
-
-  styler(bodyStyles, body);
+  const body = divGen("footer.body", bodyStyles);
+  //css
 
   //copy right
 
-  const spanTag = span(
-    [
-      "block",
-      "text-sm",
-      "text-gray-500",
-      "sm:text-center",
-      "mx-auto",
-      "my-auto",
-    ],
-    " © 2022 "
-  );
+  const spanTag = span("© 2022  |  ", [
+    "block",
+    "text-sm",
+    "text-gray-500",
+    "sm:text-center",
+    "mx-auto",
+    "my-auto",
+  ]);
 
-  let persSite = a("https://kieransweetman.com/", "Kieran Sweetman™");
-  persSite.classList.add("hover:underline");
+  let persSite = a("https://kieransweetman.com/", "Kieran Sweetman™", [
+    "hover:underline",
+  ]);
 
   spanTag.appendChild(persSite);
   // links
 
   //first parse nodes to get only the list elements + links css (ul)
-  let links = ul(3);
+
   let linkStyles = [
     "container",
     "flex",
@@ -149,8 +148,7 @@ const foot = () => {
     "mx-auto",
     "px-4",
   ];
-
-  styler(linkStyles, links);
+  let links = ul(3, linkStyles);
 
   // then adding each a tag to each li element
   let children = links.childNodes;

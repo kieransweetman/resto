@@ -13,14 +13,6 @@ const displayContent = () => {
   let wrapper = document.querySelector("#content-wrapper");
   removeContent(wrapper);
 
-  let body = divGen();
-  let title = divGen();
-  let grid = divGen();
-  let cards = [divGen(), divGen(), divGen(), divGen()];
-
-  //body settings
-  body.id = "body";
-
   let bodyStyles = [
     "container",
     "mx-auto",
@@ -31,21 +23,6 @@ const displayContent = () => {
     "gap-4",
   ];
 
-  styler(bodyStyles, body);
-
-  //title settings
-  let menuTitle = h2("Ohayo Ramen Menu");
-  let menuDesc = p(
-    "Our broths are made with time and love to produce the most Umami-esque flavors you will ever taste"
-  );
-
-  let titleStyles = ["text-center"];
-  styler(titleStyles, title);
-
-  title.appendChild(menuTitle);
-  title.appendChild(menuDesc);
-
-  //grid settings
   let gridStyles = [
     "grid",
     "sm:grid-cols-4",
@@ -56,14 +33,6 @@ const displayContent = () => {
     "grid-cols-1",
     "grid-rows-4",
   ];
-
-  gridStyles.forEach((style) => {
-    grid.classList.add(style);
-  });
-
-  grid.id = "cards";
-
-  //card settings
 
   let cardStyles = [
     "px-3",
@@ -77,6 +46,22 @@ const displayContent = () => {
     "bg-slate-700",
   ];
 
+  let body = divGen("body", bodyStyles);
+  let titleStyles = ["text-center"];
+  let title = divGen("title.info", titleStyles);
+  let grid = divGen("cards", gridStyles);
+  let cards = [divGen(), divGen(), divGen(), divGen()];
+
+  //title settings
+  let menuTitle = h2("Ohayo Ramen Menu");
+  let menuDesc = p(
+    "Our broths are made with time and love to produce the most Umami-esque flavors you will ever taste"
+  );
+
+  title.appendChild(menuTitle);
+  title.appendChild(menuDesc);
+
+  // card generator
   cards.forEach((card) => {
     const image = new Image();
     image.src =
